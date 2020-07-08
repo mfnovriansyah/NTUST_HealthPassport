@@ -9,10 +9,10 @@ USE `health_passport`;
 
 -- --------------------------------------------------------
 --
--- Table structure for table `main_tb`
+-- Table structure for table `today_tb`
 --
-DROP TABLE IF EXISTS `main_tb`;
-CREATE TABLE `main_tb` (
+DROP TABLE IF EXISTS `today_tb`;
+CREATE TABLE `today_tb` (
   `card_id` int NOT NULL PRIMARY KEY,
   `name` text NOT NULL,
   `weight` float NOT NULL,
@@ -24,9 +24,9 @@ CREATE TABLE `main_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `main_tb`
+-- Dumping data for table `today_tb`
 --
-INSERT INTO `main_tb` (`card_id`, `name`, `weight`, `physical_education`, `recommended_water_volume`, `drinked_water_volume`, `sick_status`, `class`) VALUES
+INSERT INTO `today_tb` (`card_id`, `name`, `weight`, `physical_education`, `recommended_water_volume`, `drinked_water_volume`, `sick_status`, `class`) VALUES
 ('108022041', 'Mick', 68.1, true, 1.5 , 0.6,true, 101);
 
 -- --------------------------------------------------------
