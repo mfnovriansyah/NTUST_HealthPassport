@@ -13,7 +13,7 @@ USE `health_passport`;
 --
 DROP TABLE IF EXISTS `main_tb`;
 CREATE TABLE `main_tb` (
-  `card_id` varchar(9) NOT NULL PRIMARY KEY,
+  `card_id` int NOT NULL PRIMARY KEY,
   `name` text NOT NULL,
   `weight` float NOT NULL,
   `physical_education` boolean NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE `main_tb` (
 -- Dumping data for table `main_tb`
 --
 INSERT INTO `main_tb` (`card_id`, `name`, `weight`, `physical_education`, `recommended_water_volume`, `drinked_water_volume`, `sick_status`, `class`) VALUES
-('M108022041', 'Mick', 68.1, true, 1.5 , 0.6,true, 101);
+('108022041', 'Mick', 68.1, true, 1.5 , 0.6,true, 101);
 
 -- --------------------------------------------------------
 --
@@ -55,23 +55,23 @@ INSERT INTO `pe_tb` (`class_id`, `mon`, `tue`, `wed`, `thu`, `fri`) VALUES
 --
 DROP TABLE IF EXISTS `sick_tb`;
 CREATE TABLE `sick_tb` (
-  `card_id` varchar(9) NOT NULL PRIMARY KEY,
+  `card_id` int NOT NULL PRIMARY KEY,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
 -- Dumping data for table `sick_tb`
 --
 INSERT INTO `sick_tb` (`card_id`, `date`) VALUES
-('M10802204','2020-07-07'),
-('M10802212','2020-07-02'),
-('M10802215','2020-07-04');
+('10802204','2020-07-07'),
+('10802212','2020-07-02'),
+('10802215','2020-07-04');
 -- --------------------------------------------------------
 --
 -- Table structure for table `record_tb`
 --
 DROP TABLE IF EXISTS `record_tb`;
 CREATE TABLE `record_tb` (
-  `card_id` varchar(9) NOT NULL PRIMARY KEY,
+  `card_id` int NOT NULL PRIMARY KEY,
   `name` text NOT NULL,
   `date` datetime NOT NULL,
   `recommended_water_volume` float NOT NULL,
@@ -83,6 +83,6 @@ CREATE TABLE `record_tb` (
 -- Dumping data for table `record_tb`
 --
 INSERT INTO `record_tb` (`card_id`, `name`, `date`, `recommended_water_volume`, `drinked_water_volume`, `class`) VALUES
-('M10802204', 'Mick', '2020-07-07', 1.5 , 0.6, 101);
+('10802204', 'Mick', '2020-07-07', 1.5 , 0.6, 101);
 
 -- --------------------------------------------------------
