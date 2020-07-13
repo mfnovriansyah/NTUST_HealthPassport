@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import { Platform } from '@ionic/angular';
+import {NavController,Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,8 @@ export class LoginPage implements OnInit {
 
   constructor(
     public platform				: Platform,
-    private screenOrientation	: ScreenOrientation
+    private screenOrientation	: ScreenOrientation,
+    public navCtrl      : NavController
     
   ) {}
 
@@ -22,5 +23,9 @@ export class LoginPage implements OnInit {
     }
     else{
     }
+  }
+  async loginWithCard()
+  {
+    this.navCtrl.navigateRoot('/personal-information');
   }
 }
