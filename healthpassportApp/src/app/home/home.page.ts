@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
+import {NavController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,6 +8,20 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
-
+  constructor(
+    private router      : Router,
+    public navCtrl      : NavController
+  ) {}
+  ngOnInit() {
+    console.log(this.router.url);
+  }
+  async drinkwater()
+  {
+    this.navCtrl.navigateRoot('/login');
+  } 
+  async studentneeds()
+  {
+    this.navCtrl.navigateRoot('/student-needs');
+  }
+    
 }

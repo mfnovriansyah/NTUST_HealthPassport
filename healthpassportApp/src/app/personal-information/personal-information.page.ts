@@ -14,7 +14,7 @@ export class PersonalInformationPage implements OnInit {
 
   ngOnInit() {
   }
-  async home()
+  async logout()
   {
     this.navCtrl.navigateRoot('/home');
   }

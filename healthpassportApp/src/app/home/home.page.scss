@@ -1,27 +1,24 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+ion-content
+{
+  .sqare_button {
+    margin-top: 80px;
+    width : 150px;
+    height: 150px;
+    --vertical-align: middle;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --ripple-color: darkcyan;
+    --padding-bottom: 2px !important;
+    --box-shadow: none;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  .vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 30px;
+    width: 500px;
+    margin: auto
+  }
 }

@@ -1,11 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
 </ion-header>
-
-<ion-content [fullscreen]="true">
-
+<ion-content>
+  <ion-col>
+    <ion-button fill="solid" size="large" class="sqare_button" (click)="drinkwater()" >
+        <div class="vertical">
+        <ion-icon slot="start" name="card"></ion-icon>
+        <span class="">Drink water</span>
+        </div>
+    </ion-button>
+</ion-col>
+<ion-col>
+    <ion-button fill="solid" size="large" class="sqare_button"(click)="studentneeds()" >
+        <div class="vertical">
+          <ion-icon slot="start" name="search-outline"></ion-icon>
+          <span class="">Find suitable dispenser</span>
+        </div>
+    </ion-button>
+</ion-col>
 </ion-content>

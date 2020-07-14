@@ -1,0 +1,26 @@
+<ion-header>
+  
+</ion-header>
+
+<ion-content>
+<ion-card class="student-needs">
+    <ion-card-content>
+      <ion-item>
+      <ion-label position="stacked">Type of Water</ion-label>
+      <ion-select [(ngModel)]="studentNeeds.type">
+          <ion-select-option *ngFor="let x of type" value="{{x}}">{{x}}</ion-select-option>
+        </ion-select>				
+    </ion-item>
+      <ion-item>
+      <ion-label position="stacked">Temperature(°C)</ion-label>
+      <ion-input type="text" [(ngModel)]="studentNeeds.temperature"></ion-input>
+    </ion-item>
+    </ion-card-content>
+</ion-card>	
+</ion-content>
+
+<ion-footer>
+<ion-toolbar>
+  <ion-button color="primary" expand="block" (click)="searchDipsenser()">Search</ion-button>
+</ion-toolbar>
+</ion-footer>
