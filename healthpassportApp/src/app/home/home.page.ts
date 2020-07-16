@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import {NavController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
@@ -7,17 +7,27 @@ import {NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  private deviceid = '';
   constructor(
     private router      : Router,
     public navCtrl      : NavController
   ) {}
   ngOnInit() {
-    console.log(this.router.url);
+    var tempDevice;
+    tempDevice = this.router.url;
+    tempDevice = tempDevice.split("/");
+    this.deviceid =tempDevice[1];
   }
   async drinkwater()
   {
-    this.navCtrl.navigateRoot('/login');
+    console.log(this.deviceid);
+    let navigationExtras: NavigationExtras = {
+			state	: {
+				deviceid	: this.deviceid
+			}
+    };
+    
+    this.navCtrl.navigateRoot('/login',navigationExtras);
   } 
   async studentneeds()
   {
