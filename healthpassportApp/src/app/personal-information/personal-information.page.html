@@ -6,16 +6,16 @@
   <ion-card class="pesonal-infommation">
     <ion-card-content>
       <ion-item>
-        <ion-label position="stacked">Hi, Mick</ion-label>
+        <ion-label position="stacked">Hi, {{data.name}}</ion-label>
         <ion-icon name="person-circle-outline" slot="start" color="primary"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-label position="stacked">You already drank : <span class="water-drank">0.5L</span></ion-label>
+        <ion-label position="stacked">You already drank : <span class="water-drank">{{data.drinked_water_volume}}</span></ion-label>
         <ion-icon name="information-circle-outline" slot="start" color="primary"></ion-icon>
       </ion-item>
       <ion-item>
         <ion-icon name="hourglass-outline" slot="start" color="primary"></ion-icon>
-        <ion-label position="stacked">Still need to drink : <span class="water-drink">0.7L</span></ion-label>
+        <ion-label position="stacked">Still need to drink : <span class="water-drink">{{data.recommended_water_volume}}</span></ion-label>
       </ion-item>
       <ion-button color="primary" expand="block" (click)="logout()">Logout</ion-button>
     </ion-card-content>
