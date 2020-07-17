@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {LoadingController,NavController } from '@ionic/angular';
+import {LoadingController,NavController} from '@ionic/angular';
+import { ActivatedRoute,  Router } from '@angular/router';
 
 
 import { ApiService } from '../service/api.service';
@@ -11,16 +12,23 @@ import { ApiService } from '../service/api.service';
 })
 export class PersonalInformationPage implements OnInit {
   data : any = []; // for access id
-  
-  device	  = ''; //for device id
+  private deviceid	: '';
   constructor(
     public navCtrl      : NavController,
     public loadingCtrl	: LoadingController,
-    public apiSvc				: ApiService
-  ) { }
+    public apiSvc				: ApiService,
+    public route	      : ActivatedRoute, 
+		public router	      : Router 
+  ) { 
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) 
+      {
+        this.deviceid 	= this.router.getCurrentNavigation().extras.state.deviceid;
+      }
+    });
+  }
 
   ngOnInit() {
-    this.device  = 'gym0201';
     this.getData();
   }
   //to Logout
@@ -34,14 +42,12 @@ export class PersonalInformationPage implements OnInit {
         let loading = await this.loadingCtrl.create({
             message    : 'Loading Data',
         });
-        console.log(this.device);
         await loading.present();
         
-  		  this.apiSvc.get('/check/device='+this.device+'').then(
+  		  this.apiSvc.get('/check/device='+this.deviceid+'').then(
   			success => {
   				loading.dismiss();
           let respon = JSON.parse(this.apiSvc.getDataResult.data);
-          console.log(respon.Data[0]);
   				if(respon.Data[0].login ==true && respon.Data[0].locked == false)
   				{
             this.data = respon.Data[0];

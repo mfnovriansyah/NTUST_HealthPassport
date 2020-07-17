@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import {NavController,Platform } from '@ionic/angular';
-import { ActivatedRoute, Router } from '@angular/router';
+import {NavController,Platform} from '@ionic/angular';
+import { ActivatedRoute,  Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,6 @@ export class LoginPage implements OnInit {
       if (this.router.getCurrentNavigation().extras.state) 
       {
         this.deviceid 	= this.router.getCurrentNavigation().extras.state.deviceid;
-        console.log(this.deviceid);
       }
     });
   }
@@ -35,10 +34,14 @@ export class LoginPage implements OnInit {
     }
     else{
     }
-    console.log(this.deviceid);
   }
   async loginWithCard()
   {
-    this.navCtrl.navigateRoot('/personal-information');
+    let navigationExtras: NavigationExtras = {
+			state	: {
+				deviceid	: this.deviceid
+      }
+    };
+    this.navCtrl.navigateRoot('/personal-information',navigationExtras);
   }
 }
