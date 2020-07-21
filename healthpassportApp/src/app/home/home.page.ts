@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute} from '@angular/router';
 import {NavController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
@@ -10,13 +10,13 @@ export class HomePage {
   private deviceid = '';
   constructor(
     private router      : Router,
-    public navCtrl      : NavController
+    public navCtrl      : NavController,
+    private route: ActivatedRoute
   ) {}
   ngOnInit() {
-    var tempDevice;
-    tempDevice = this.router.url;
-    tempDevice = tempDevice.split("/");
-    this.deviceid =tempDevice[1];
+    this.route.params.subscribe(params => {
+      this.deviceid = params['deviceId'];
+    });
   }
   async drinkwater()
   {

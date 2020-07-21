@@ -34,7 +34,7 @@ export class PersonalInformationPage implements OnInit {
   //to Logout
   async logout()
   {
-    this.navCtrl.navigateRoot('/home');
+    this.navCtrl.navigateRoot(['/home', this.deviceid ]);
   }
   //to GetData with  Device ID
   async getData()
@@ -46,9 +46,11 @@ export class PersonalInformationPage implements OnInit {
         
   		  this.apiSvc.get('/check/device='+this.deviceid+'').then(
   			success => {
-  				loading.dismiss();
+          loading.dismiss();
+          
           let respon = JSON.parse(this.apiSvc.getDataResult.data);
-  				if(respon.Data[0].login ==true && respon.Data[0].locked == false)
+          console.log(respon);
+  				if(respon.Data[0].login ==true && respon.Data[0].locked == true)
   				{
             this.data = respon.Data[0];
             this.data.locked = true;

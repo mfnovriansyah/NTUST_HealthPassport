@@ -7,7 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'gym0201',
+    path: 'home/:deviceId',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
