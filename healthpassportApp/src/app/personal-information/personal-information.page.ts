@@ -34,7 +34,14 @@ export class PersonalInformationPage implements OnInit {
   //to Logout
   async logout()
   {
-    this.navCtrl.navigateRoot(['/home', this.deviceid ]);
+    if(this.deviceid)
+    {
+      this.navCtrl.navigateRoot(['/home', this.deviceid ]);
+    }
+    else{
+      this.navCtrl.navigateRoot('/home');
+    }
+    
   }
   //to GetData with  Device ID
   async getData()

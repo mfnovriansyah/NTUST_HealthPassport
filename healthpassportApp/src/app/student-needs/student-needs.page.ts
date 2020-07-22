@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-student-needs',
@@ -12,9 +13,16 @@ export class StudentNeedsPage implements OnInit {
   }
   type      = ['Hot Water', 'Warm water', 'Cold water'];
   
-  constructor() { }
+  constructor(
+    public navCtrl      : NavController,
+  ) { }
 
   ngOnInit() {
   }
+  async searchDipsenser()
+  {
+    this.navCtrl.navigateRoot('/dispenser-information');
+  }
+
 
 }
