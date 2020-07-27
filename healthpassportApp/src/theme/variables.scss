@@ -3,6 +3,14 @@
 
 /** Ionic CSS Variables **/
 :root {
+  ion-loading.custom-loading{
+    background-color: grey;
+     --backdrop-opacity: 0%;
+    .loading-wrapper {
+      --background:white;
+      --backdrop-opacity: 100%;
+    }
+  }
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -225,4 +233,6 @@
 
     --ion-tab-bar-background: #1f1f1f;
   }
+  
+  
 }
