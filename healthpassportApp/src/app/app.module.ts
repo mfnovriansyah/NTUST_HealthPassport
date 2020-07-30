@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HTTP } from '@ionic-native/http/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     ScreenOrientation,
     SplashScreen,
     HTTP,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
