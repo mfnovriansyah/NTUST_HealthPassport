@@ -48,6 +48,7 @@ export class PersonalInformationPage implements OnInit {
     this.apiSvc.put('/setlogin/status', this.dataForm).then(
       success => {
         let respon = JSON.parse(this.apiSvc.getDataResult.data);
+        console.log(respon);
         if(respon == "Status updated successfully.")
         {
           if(this.deviceid)
@@ -113,7 +114,7 @@ export class PersonalInformationPage implements OnInit {
           position: 'top'
         });
         
-  		  this.apiSvc.get('/check/device='+this.deviceid+'').then(
+  		  this.apiSvc.get('/check/device='+this.deviceid).then(
   			success => {
           let respon = JSON.parse(this.apiSvc.getDataResult.data);
           console.log(respon);
@@ -145,7 +146,7 @@ export class PersonalInformationPage implements OnInit {
 
   //to check Card ID by Device ID 
   async checkData(){
-    this.apiSvc.get('/check/device='+this.deviceid+'').then(
+    this.apiSvc.get('/check/device='+this.deviceid).then(
       success => {
         let respon = JSON.parse(this.apiSvc.getDataResult.data);
           if(!respon.Data[0])
