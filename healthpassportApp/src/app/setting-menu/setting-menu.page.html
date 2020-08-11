@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title center>settingMenu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-label position="stacked">Device ID</ion-label>
+  <ion-input type="text" [(ngModel)]="deviceInfo.deviceId"></ion-input>
+      <ion-button (click)="setDeviceId(deviceInfo.deviceId)"><ion-icon slot="end"></ion-icon>Set DeviceId</ion-button>
+
+      <ion-button (click)="activeBluetooth()"><ion-icon slot="end" name="bluetooth-outline"></ion-icon>Search</ion-button>
+      <div *ngFor="data of Devices">
+        <p>{{data.name}}</p>
+        <p>{{data.id}}</p>
+        <button (click)="connect(data.address)">Connect</button>
+      </div>
+   
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    
+  </ion-toolbar>
+  </ion-footer>

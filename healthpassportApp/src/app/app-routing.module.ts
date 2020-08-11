@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'setting-menu',
     pathMatch: 'full'
   },
   {
@@ -26,9 +26,14 @@ const routes: Routes = [
   {
     path: 'student-needs',
     loadChildren: () => import('./student-needs/student-needs.module').then( m => m.StudentNeedsPageModule)
-  },  {
+  },
+  {
     path: 'dispenser-information',
     loadChildren: () => import('./dispenser-information/dispenser-information.module').then( m => m.DispenserInformationPageModule)
+  },
+  {
+    path: 'setting-menu',
+    loadChildren: () => import('./setting-menu/setting-menu.module').then( m => m.SettingMenuPageModule)
   },
 
 ];
