@@ -34,7 +34,11 @@ const routes: Routes = [
   {
     path: 'setting-menu',
     loadChildren: () => import('./setting-menu/setting-menu.module').then( m => m.SettingMenuPageModule)
+  },  {
+    path: 'dispenser-details',
+    loadChildren: () => import('./dispenser-details/dispenser-details.module').then( m => m.DispenserDetailsPageModule)
   },
+
 
 ];
 

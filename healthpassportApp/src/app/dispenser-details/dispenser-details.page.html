@@ -1,0 +1,114 @@
+<ion-header>
+  
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-label>Date Time : {{ today | date: 'dd-MM-yyyy HH:mm' }}</ion-label>
+        <ion-grid class="topbar">
+          <ion-row>
+            <ion-col size="5" text-right>
+              <ion-label position="stacked">Building:</ion-label>
+                <ion-button color="light">
+                    <ion-icon slot="start" name="home-outline"></ion-icon> Gym
+                </ion-button>                
+            </ion-col>
+              <ion-col size="5" text-right>
+                <ion-label position="stacked">Device ID:</ion-label>
+                  <ion-button color="light">
+                      <ion-icon slot="start" name="phone-portrait-outline"></ion-icon> gym0201
+                  </ion-button>                
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+        <ion-grid>
+          <ion-label><ion-icon slot="start" name="thermometer-outline"></ion-icon>Temperature</ion-label>
+          <ion-row>
+            <ion-col>
+              <ion-button size="large" class="sqare_button" >
+                <div class="vertical">
+                <ion-icon slot="start" name="sunny-outline"></ion-icon>
+                <span class="">98°C</span>
+                </div>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button  size="large" class="sqare_button" >
+                <div class="vertical">
+                <ion-icon slot="stacked" name="water-outline"></ion-icon>
+                <span class="">40°C</span>
+                </div>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button fill="solid" size="large" class="sqare_button">
+                <div class="vertical">
+                <ion-icon slot="start" name="snow-outline"></ion-icon>
+                <span class="">14°C</span>
+                </div>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-label><ion-icon slot="start" name="search-circle-outline"></ion-icon></ion-label>
+          <ion-row>
+            <ion-col>
+              <ion-button size="large" class="sqare_button">
+                <div class="vertical">
+                <ion-icon slot="start" name="power-outline"></ion-icon>
+                <span class="">ON</span>
+                </div>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button  size="large" class="sqare_button" >
+                <div class="vertical">
+                <ion-icon slot="stacked" name="barcode-outline"></ion-icon>
+                <span class="">OFF</span>
+                </div>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button fill="solid" size="large" class="sqare_button">
+                <div class="vertical">
+                <ion-icon slot="start" name="color-fill-outline"></ion-icon>
+                <span class="">ON</span>
+                </div>
+              </ion-button>
+            </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-button size="large" class="sqare_button">
+                  <div class="vertical">
+                  <ion-icon slot="start" name="build-outline"></ion-icon>
+                  <span class=""> 0</span>
+                  </div>
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button  size="large" class="sqare_button" text-capitalize="false" >
+                  <div class="vertical">
+                  <ion-icon slot="stacked" name="water-outline"></ion-icon>
+                  <span class="test"> 72ppm</span>
+                  </div>
+                </ion-button>
+              </ion-col>
+              <ion-col>
+                <ion-button fill="solid" size="large" class="sqare_button">
+                  <div class="vertical">
+                  <ion-icon slot="start" name="water-outline"></ion-icon>
+                  <span class="">15</span>
+                  </div>
+                </ion-button>
+              </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-col>
+      <ion-col >
+        <img  width="100%" height="80%" src="assets/img/dispenserdetails.JPG">
+      </ion-col>
+  </ion-row>
+    </ion-grid>
+</ion-content>

@@ -1,0 +1,20 @@
+ion-content
+{
+    align-items: center;
+    justify-content: center;
+    .sqare_button {
+        margin-top: 5px;
+        width : 4.2em;
+        height: 3em;
+        --vertical-align: middle;
+        --padding-start: 5px;
+        --padding-end: 5px;
+        --ripple-color: darkcyan;
+        --padding-bottom: 2px !important;
+        --box-shadow: none;
+        white-space: normal;
+        word-wrap: break-word;
+        text-transform: none;
+    }
+
+}
