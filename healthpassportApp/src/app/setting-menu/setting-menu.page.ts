@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
-import{AlertController} from '@ionic/angular'
+import{AlertController} from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { LoadingController, NavController } from '@ionic/angular';
+import {NavigationExtras } from '@angular/router';
+
 @Component({
   selector: 'app-setting-menu',
   templateUrl: './setting-menu.page.html',
@@ -8,24 +12,46 @@ import{AlertController} from '@ionic/angular'
 })
 export class SettingMenuPage implements OnInit {
 
+  //variable to save deviceId from Form
+  dataForm = {
+    deviceId         : ''
+  }
 
-  Devices : any = {};
-  constructor(private bluetoothSerial: BluetoothSerial, private alertController: AlertController) { }
+  Devices;
+  constructor(
+    private bluetoothSerial: BluetoothSerial, 
+    private alertController: AlertController,
+    public loadingCtrl  : LoadingController,
+    public storage      : Storage,
+    public navCtrl      : NavController
+    ) { }
+
+  //Set Device Id and Save it to Storage
+  async setDeviceId()
+  {
+    let loading = await this.loadingCtrl.create({
+      message    : 'Set Device',
+    });
+    console.log(this.dataForm);
+    await loading.present();
+    if(this.dataForm.deviceId != null)
+    {
+      let navigationExtras: NavigationExtras = {
+        state	: {
+          deviceid	: this.dataForm.deviceId
+        }
+      };
+      this.storage.set('settingData', JSON.stringify(this.dataForm)).then(() => {
+        loading.dismiss();
+        console.log(this.dataForm);
+        this.navCtrl.navigateRoot('/home',navigationExtras);
+      });
+    }
+  }
 
   activeBluetooth(){
-    this.Devices.id[0] = "test";
-    this.Devices.name[0] = "test";
-    this.Devices.address[0] = "test";
-    this.Devices.id[1] = "test";
-    this.Devices.name[1] = "test";
-    this.Devices.address[1] = "test";
     this.bluetoothSerial.isEnabled().then(response => {
       this.isEnabled("isOn");
-      this.Devices.id[0] = "test";
-      this.Devices.name[0] = "test";
-      this.Devices.address[0] = "test";
-      this.Devices.id[1] = "test";
-      this.Devices.address[1] = "test";
       this.listDevice();
     }, error=>{
       this.isEnabled("isOff");

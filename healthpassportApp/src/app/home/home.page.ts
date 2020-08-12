@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute} from '@angular/router';
-import {NavController } from '@ionic/angular';
+import {NavController, LoadingController} from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -11,12 +13,21 @@ export class HomePage {
   constructor(
     private router      : Router,
     public navCtrl      : NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public storage      : Storage,
+    public loadingCtrl     : LoadingController
+    
   ) {}
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.deviceid = params['deviceId'];
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) 
+      {
+        this.deviceid 	= this.router.getCurrentNavigation().extras.state.deviceid;
+      }
     });
+    if(this.deviceid == null || this.deviceid == 'undefined' || !this.deviceid){
+      this.checkDeviceId();
+    }
   }
   async drinkwater()
   {
@@ -32,6 +43,25 @@ export class HomePage {
   async studentneeds()
   {
     this.navCtrl.navigateRoot('/student-needs');
+  }    
+  //check Device ID in Storage
+  async checkDeviceId(){
+    let loading = await this.loadingCtrl.create({
+        message    : 'Checking DeviceID',
+    });
+    await loading.present();
+    this.storage.get('settingData').then((val) => {
+
+      loading.dismiss(); 
+      
+      if(val != '' && val != null)
+      {
+        let data = JSON.parse(val);
+        console.log(data.deviceId);
+        this.deviceid = data.deviceId;
+      }else{
+        this.navCtrl.navigateRoot('/setting-menu');
+      }      
+    });
   }
-    
 }
