@@ -6,31 +6,32 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-label>Date Time : {{ today | date: 'dd-MM-yyyy HH:mm' }}</ion-label>
+        <ion-label style="font-size: 60%;">Date Time : {{ data.UploadTime | date: 'dd-MM-yyyy HH:mm' }}</ion-label>
         <ion-grid class="topbar">
           <ion-row>
             <ion-col size="5" text-right>
-              <ion-label position="stacked">Building:</ion-label>
+              <ion-label position="stacked" style="font-size: 60%;">Building:<br></ion-label>
                 <ion-button color="light">
-                    <ion-icon slot="start" name="home-outline"></ion-icon> Gym
+                    <ion-icon slot="start" name="home-outline"></ion-icon> {{building}}
                 </ion-button>                
             </ion-col>
               <ion-col size="5" text-right>
-                <ion-label position="stacked">Device ID:</ion-label>
+                <ion-label position="stacked" style="font-size: 60%;">Device ID:<br></ion-label>
                   <ion-button color="light">
-                      <ion-icon slot="start" name="phone-portrait-outline"></ion-icon> gym0201
+                      <ion-icon slot="start" name="phone-portrait-outline"></ion-icon> {{data.Device_ID}}
                   </ion-button>                
               </ion-col>
           </ion-row>
       </ion-grid>
         <ion-grid>
-          <ion-label><ion-icon slot="start" name="thermometer-outline"></ion-icon>Temperature</ion-label>
+          <ion-label style="font-size: 60%;"><ion-icon slot="start" name="thermometer-outline"></ion-icon>Temperature</ion-label>
           <ion-row>
             <ion-col>
               <ion-button size="large" class="sqare_button" >
                 <div class="vertical">
                 <ion-icon slot="start" name="sunny-outline"></ion-icon>
-                <span class="">98°C</span>
+                <span style="font-size: 50%;">Hot<br></span>
+                <span class="">{{data.HotTemp}}°C</span>
                 </div>
               </ion-button>
             </ion-col>
@@ -38,7 +39,8 @@
               <ion-button  size="large" class="sqare_button" >
                 <div class="vertical">
                 <ion-icon slot="stacked" name="water-outline"></ion-icon>
-                <span class="">40°C</span>
+                <span style="font-size: 50%;">Warm<br></span>
+                <span class="">{{data.WarmTemp}}°C</span>
                 </div>
               </ion-button>
             </ion-col>
@@ -46,18 +48,21 @@
               <ion-button fill="solid" size="large" class="sqare_button">
                 <div class="vertical">
                 <ion-icon slot="start" name="snow-outline"></ion-icon>
-                <span class="">14°C</span>
+                <span style="font-size: 50%;">Cold<br></span>
+                <span class="">{{data.ColdTemp}}°C</span>
                 </div>
               </ion-button>
             </ion-col>
           </ion-row>
-          <ion-label><ion-icon slot="start" name="search-circle-outline"></ion-icon></ion-label>
+          <ion-label style="font-size: 60%; margin-top: 0;"><ion-icon slot="start" name="search-circle-outline"></ion-icon></ion-label>
           <ion-row>
             <ion-col>
               <ion-button size="large" class="sqare_button">
                 <div class="vertical">
                 <ion-icon slot="start" name="power-outline"></ion-icon>
-                <span class="">ON</span>
+                <span style="font-size: 40%;">Status<br></span>
+                <div *ngIf="data.Status==1">ON</div>
+                <div *ngIf="data.Status==0">OFF</div>
                 </div>
               </ion-button>
             </ion-col>
@@ -65,7 +70,9 @@
               <ion-button  size="large" class="sqare_button" >
                 <div class="vertical">
                 <ion-icon slot="stacked" name="barcode-outline"></ion-icon>
-                <span class="">OFF</span>
+                <span style="font-size: 40%;">Cooler<br></span>
+                <div *ngIf="data.Cooling==1">ON</div>
+                <div *ngIf="data.Cooling==0">OFF</div>
                 </div>
               </ion-button>
             </ion-col>
@@ -73,7 +80,9 @@
               <ion-button fill="solid" size="large" class="sqare_button">
                 <div class="vertical">
                 <ion-icon slot="start" name="color-fill-outline"></ion-icon>
-                <span class="">ON</span>
+                <span style="font-size: 40%;">Fiiling<br></span>
+                <div *ngIf="data.Refilling==1">ON</div>
+                <div *ngIf="data.Refilling==0">OFF</div>
                 </div>
               </ion-button>
             </ion-col>
@@ -83,7 +92,8 @@
                 <ion-button size="large" class="sqare_button">
                   <div class="vertical">
                   <ion-icon slot="start" name="build-outline"></ion-icon>
-                  <span class=""> 0</span>
+                  <span style="font-size: 40%;">Error Code<br></span>
+                  <span class="">{{data.ErrorCode}}</span>
                   </div>
                 </ion-button>
               </ion-col>
@@ -91,7 +101,8 @@
                 <ion-button  size="large" class="sqare_button" text-capitalize="false" >
                   <div class="vertical">
                   <ion-icon slot="stacked" name="water-outline"></ion-icon>
-                  <span class="test"> 72ppm</span>
+                  <span style="font-size: 40%;">TDS Value<br></span>
+                  <span>{{data.TDS}}<span style="font-size: 40%;">ppm<br></span></span>
                   </div>
                 </ion-button>
               </ion-col>
@@ -99,7 +110,8 @@
                 <ion-button fill="solid" size="large" class="sqare_button">
                   <div class="vertical">
                   <ion-icon slot="start" name="water-outline"></ion-icon>
-                  <span class="">15</span>
+                  <span style="font-size: 40%;">WatelLevel<br></span>
+                  <span class="">{{data.WaterLevel}}</span>
                   </div>
                 </ion-button>
               </ion-col>

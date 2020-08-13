@@ -63,6 +63,48 @@ export class ApiService {
 			}
 		});
 	}
+	getDispenser(url)
+	{
+  		return new Promise(resolve => {
+			if(this.platform.is('cordova'))
+			{
+				this.nativeHttp.sendRequest(Config.APIDispenserInformation + url, {
+					method : "get"
+				}).then(respon => {
+					this.getDataResult.status 	= respon.status;
+					this.getDataResult.data 	= respon.data;
+					resolve(this.getDataResult);
+				})
+				.catch(respon => {
+					this.getDataResult.status = respon.status;
+					this.getDataResult.data   = respon.error;
+					resolve(this.getDataResult);
+				});
+			}
+			else
+			{
+				const httpOptions = {
+				  	headers: new HttpHeaders({
+				    	'Content-Type'	:  'application/json',
+				    	
+				  	})
+				};
+
+              	this.hybridHttp.get(Config.APIDispenserInformation + url).subscribe(
+              		respon => {
+              			this.getDataResult.status = 200;
+              			this.getDataResult.data   = JSON.stringify(respon);
+              			resolve(this.getDataResult);
+              		},
+              		error => {
+              			this.getDataResult.status = error.status;
+              			this.getDataResult.data   = JSON.stringify(error.error);              			
+              			resolve(this.getDataResult);
+              		}
+              	);
+			}
+		});
+	}
 	put(url, data = {})
 	{
   		return new Promise(resolve => {

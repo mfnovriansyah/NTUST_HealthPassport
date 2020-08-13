@@ -30,8 +30,6 @@ export class AppComponent {
       this.splashScreen.hide();
     });
     this.checkDeviceId();
-    
-    
   }
   //check Device ID in Storage
   async checkDeviceId(){
