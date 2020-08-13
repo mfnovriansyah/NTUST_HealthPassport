@@ -10,7 +10,7 @@
       <ion-button (click)="setDeviceId()">Set DeviceId</ion-button>
 
       <ion-button (click)="activeBluetooth()"><ion-icon slot="end" name="bluetooth-outline"></ion-icon>Search</ion-button>
-      <div *ngFor="data of Devices">
+      <div *ngFor="let data of Devices">
         <p>{{data.name}}</p>
         <p>{{data.id}}</p>
         <button (click)="connect(data.address)">Connect</button>

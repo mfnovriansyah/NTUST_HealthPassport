@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import{AlertController} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-import { LoadingController, NavController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import {NavigationExtras } from '@angular/router';
 
 @Component({
@@ -23,7 +23,8 @@ export class SettingMenuPage implements OnInit {
     private alertController: AlertController,
     public loadingCtrl  : LoadingController,
     public storage      : Storage,
-    public navCtrl      : NavController
+    public navCtrl      : NavController,
+    private toastCtrl: ToastController,
     ) { }
 
   //Set Device Id and Save it to Storage
@@ -49,7 +50,7 @@ export class SettingMenuPage implements OnInit {
     }
   }
 
-  activeBluetooth(){
+  async activeBluetooth(){
     this.bluetoothSerial.isEnabled().then(response => {
       this.isEnabled("isOn");
       this.listDevice();
@@ -58,15 +59,33 @@ export class SettingMenuPage implements OnInit {
     })
   } 
 
-  listDevice(){
+  async listDevice(){
+    let loading = await this.loadingCtrl.create({
+      message    : 'Searching Bluetooth Device',
+      spinner:    'crescent',
+      cssClass: 'custom-loading',
+      duration:   2000
+    });
+
+    await loading.present();
+
+    //to inform if No Bluetooth Device Detected
+    let errorToast;
+    errorToast = await this.toastCtrl.create({
+      message: 'No Bluetooth devices were found',
+      duration: 2000,
+      position: 'top'
+    });
     this.bluetoothSerial.list().then(response => {
       this.Devices= response;
+      this.loadingCtrl.dismiss();
     }, error=>{
+      errorToast.present();
       this.isEnabled("error");
-    })
-  }
+      })
+    }
 
-  connect(address){
+  async connect(address){
     this.bluetoothSerial.connect(address).subscribe(success => {
       this.deviceConnected();
     }, error=>{
@@ -74,25 +93,26 @@ export class SettingMenuPage implements OnInit {
     })
   }
 
-  deviceConnected(){
+  async deviceConnected(){
     this.bluetoothSerial.subscribe('/n').subscribe(success => {
       this.hundler(success);
+      this.setData();
     }, error=>{
       this.isEnabled("error");
     })
   }
-  hundler(value){
+  async hundler(value){
     console.log(value);
   }
 
-  setData(){
-    this.bluetoothSerial.write("O").then(response => {
+  async setData(){
+    this.bluetoothSerial.write('o').then(response => {
       console.log("okay");
     }, error=>{
       console.log("error");
     })
   }
-  deviceDisconnected(){
+  async deviceDisconnected(){
     this.bluetoothSerial.disconnect();
     console.log("Device Disconected");
   }
