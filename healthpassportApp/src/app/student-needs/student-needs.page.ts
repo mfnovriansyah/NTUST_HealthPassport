@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NavController} from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-student-needs',
@@ -11,7 +12,7 @@ export class StudentNeedsPage implements OnInit {
       temperature			: '',
       type			      : ''
   }
-  type      = ['Hot Water', 'Warm water', 'Cold water'];
+  type      = ['Hot Water', 'Cold Water'];
   
   constructor(
     public navCtrl      : NavController,
@@ -21,7 +22,13 @@ export class StudentNeedsPage implements OnInit {
   }
   async searchDipsenser()
   {
-    this.navCtrl.navigateRoot('/dispenser-information');
+    let navigationExtras: NavigationExtras = {
+			state	: {
+        type	: this.studentNeeds.type,
+        temperature	: this.studentNeeds.temperature
+      }
+    };
+    this.navCtrl.navigateRoot('/dispenser-information',navigationExtras);
   }
 
 

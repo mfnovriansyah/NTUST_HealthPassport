@@ -10,7 +10,7 @@ import { ActivatedRoute,  Router} from '@angular/router';
 export class DispenserDetailsPage implements OnInit {
 
 private today;
-private deviceid= '';
+private deviceId= '';
 private building= [];
 
 data : any = []; // for Dispenser Details Data
@@ -29,11 +29,11 @@ ngOnInit() {
   this.route.queryParams.subscribe(params => {
     if (this.router.getCurrentNavigation().extras.state) 
     {
-      this.deviceid 	= this.router.getCurrentNavigation().extras.state.deviceid;
+      this.deviceId 	= this.router.getCurrentNavigation().extras.state.deviceId;
     }
   });
   this.getDispenserDetails();
-  console.log(this.deviceid);
+  console.log(this.deviceId);
 }
  async getDispenserDetails()
   {
@@ -41,7 +41,7 @@ ngOnInit() {
         message    : 'Load Dispenser Data',
     });
     await loading.present();        
-    this.apiSvc.getDispenser('?Device_ID='+this.deviceid).then(
+    this.apiSvc.getDispenser('?Device_ID='+this.deviceId).then(
       success => {
         let respon = JSON.parse(this.apiSvc.getDataResult.data);
         console.log(respon.msg);
