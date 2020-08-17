@@ -1,39 +1,119 @@
 ion-content{
-  .sqare_button {
-    margin-top: 2vh;
-    margin-left: 31%;
-    margin-right: 17%;
-    width : 19vh;
-    height: 10vh;
-    --vertical-align: middle;
-    --padding-start: 10px;
-    --padding-end: 10px;
-    --ripple-color: darkcyan;
-    --padding-bottom: 2px !important;
-    --box-shadow: none;
-    white-space: normal;
-    word-wrap: break-word;
+  .totaldevice3 {
+    .sqare_button {
+      margin-top: 2vh;
+      margin-left: 31%;
+      margin-right: 17%;
+      width : 19vh;
+      height: 10vh;
+      --vertical-align: middle;
+      --padding-start: 10px;
+      --padding-end: 10px;
+      --ripple-color: darkcyan;
+      --padding-bottom: 2px !important;
+      --box-shadow: none;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 30px;
+    }
+    img
+    {
+      margin-top: 1vh;
+      margin-left: 31%;
+      margin-right: 17%;
+      width: 20vh;
+      height: 40vh;
+    }
+      
+    ion-label 
+    {
+      font-size: 6vh;
+      margin-top: 20px;
+      margin-left:  20%;
+      margin-right: 7%;
+    }
   }
-  .vertical {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 30px;
+  .totaldevice2 {
+    .sqare_button {
+      margin-top: 2vh;
+      margin-left: 31%;
+      margin-right: 17%;
+      width : 19vh;
+      height: 10vh;
+      --vertical-align: middle;
+      --padding-start: 10px;
+      --padding-end: 10px;
+      --ripple-color: darkcyan;
+      --padding-bottom: 2px !important;
+      --box-shadow: none;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 30px;
+    }
+    img
+    {
+      margin-top: 1vh;
+      margin-left: 31%;
+      margin-right: 17%;
+      width: 20vh;
+      height: 40vh;
+    }
+      
+    ion-label 
+    {
+      font-size: 6vh;
+      margin-top: 20px;
+      margin-left:  27%;
+      margin-right: 7%;
+    }
   }
-	img
-  {
-    margin-top: 1vh;
-    margin-left: 31%;
-    margin-right: 17%;
-    width: 20vh;
-    height: 40vh;
-  }
-    
-  ion-label 
-  {
-    font-size: 6vh;
-    margin-top: 20px;
-    margin-left:  20%;
-    margin-right: 7%;
+  .totaldevice1 {
+    .sqare_button {
+      margin-top: 2vh;
+      margin-left: 44%;
+      margin-right: 17%;
+      width : 19vh;
+      height: 10vh;
+      --vertical-align: middle;
+      --padding-start: 10px;
+      --padding-end: 10px;
+      --ripple-color: darkcyan;
+      --padding-bottom: 2px !important;
+      --box-shadow: none;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+    .vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 30px;
+    }
+    img
+    {
+      margin-top: 1vh;
+      margin-left: 44%;
+      margin-right: 17%;
+      width: 20vh;
+      height: 40vh;
+    }
+      
+    ion-label 
+    {
+      font-size: 6vh;
+      margin-top: 20px;
+      margin-left:  41%;
+      margin-right: 7%;
+    }
   }
 }

@@ -62,4 +62,8 @@ ngOnInit() {
       }
     );    
   }
+  async backHome()
+  {
+    this.navCtrl.navigateRoot('/home');
+  }
 }

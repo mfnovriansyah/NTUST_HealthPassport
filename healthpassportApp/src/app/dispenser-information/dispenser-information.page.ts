@@ -19,6 +19,7 @@ export class DispenserInformationPage implements OnInit {
   deviceId : any = [];  
   data : any = []; // for Dispenser Details Data
   filterData : any;
+  
 
   constructor(
     public navCtrl      : NavController,
@@ -35,11 +36,17 @@ export class DispenserInformationPage implements OnInit {
         this.studentNeeds.temperature 	= this.router.getCurrentNavigation().extras.state.temperature;
       }
       console.log(this.studentNeeds);
+      console.log(this.studentNeeds.type);
+      if(this.studentNeeds.type != '' && this.studentNeeds.temperature != '')
+      {
+        this.getDispenserInformation();
+      }
+      else if(this.studentNeeds.type == '' || this.studentNeeds.temperature == '')
+      {
+        this.navCtrl.navigateRoot('/student-needs');
+      }
     });
-    if(this.studentNeeds)
-    {
-      this.getDispenserInformation();
-    }
+    
    }
 
   ngOnInit() {
@@ -107,21 +114,24 @@ export class DispenserInformationPage implements OnInit {
       noDispenser.present();
       this.navCtrl.navigateRoot('/student-needs');
     }
-    this.deviceId[0] =this.filterData[0].Device_ID;
-    this.deviceId[1] =this.filterData[1].Device_ID;
-    this.deviceId[2] =this.filterData[2].Device_ID;
-    if(this.deviceId[2])
-    {
-      this.info = 'There are 3 dispensers meet your needs';
+    if(this.filterData.length == 1)
+    { 
+      this.deviceId[0] =this.filterData[0].Device_ID;
+      this.info = 'There is 1 dispenser meet your needs';
     }
-    else if(this.deviceId[1] && !this.deviceId[2])
+    if(this.filterData.length == 2)
     {
+      this.deviceId[0] =this.filterData[0].Device_ID;
+      this.deviceId[1] =this.filterData[1].Device_ID;
       this.info = 'There are 2 dispensers meet your needs';
     }
-    else if(this.deviceId[0] && !this.deviceId[2] && !this.deviceId[1])
+    if(this.filterData.length >= 3)
     {
-      this.info = 'There is 1 dispenser meet your needs';
-    }    
+      this.deviceId[0] =this.filterData[0].Device_ID;
+      this.deviceId[1] =this.filterData[1].Device_ID;
+      this.deviceId[2] =this.filterData[2].Device_ID;
+      this.info = 'There are 3 dispensers meet your needs';
+    }
   }
 
   //dispenserDetails function to go to dispenser details with device id parameters
