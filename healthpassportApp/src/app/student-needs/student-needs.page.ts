@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NavController} from '@ionic/angular';
+import {NavController,ToastController} from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 
 @Component({
@@ -16,12 +16,40 @@ export class StudentNeedsPage implements OnInit {
   
   constructor(
     public navCtrl      : NavController,
+    private toastCtrl: ToastController
   ) { }
 
   ngOnInit() {
   }
   async searchDipsenser()
   {
+
+    // to inform fill type of water field
+    let fileType;
+    fileType = await this.toastCtrl.create({
+      message: 'Fill Type of Water',
+      duration: 2000,
+      position: 'top'
+    });
+    // to inform fill tempereature field
+    let fillTemp;
+    fillTemp = await this.toastCtrl.create({
+      message: 'Fill Temperature',
+      duration: 2000,
+      position: 'top'
+    });
+    if(this.studentNeeds.type == '' || this.studentNeeds.type == undefined)
+    {
+        fileType.present();
+        return false;
+    }
+    
+    if(this.studentNeeds.temperature == '' || this.studentNeeds.temperature == undefined)
+    {
+        fillTemp.present();
+        return false;
+    }
+
     let navigationExtras: NavigationExtras = {
 			state	: {
         type	: this.studentNeeds.type,

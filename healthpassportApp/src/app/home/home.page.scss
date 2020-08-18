@@ -17,3 +17,32 @@
   align-items: center;
   line-height: 30px;
 }
+@media only screen and (min-height: 600px) {
+  .sqare_button {
+    margin-top: 7em;
+    width : 300px;
+    height: 300px;
+    --vertical-align: middle;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --ripple-color: darkcyan;
+    --padding-bottom: 2px !important;
+    --box-shadow: none;
+    white-space: normal;
+    word-wrap: break-word;
+    .fontStyle{
+        font-size: 35px;
+        font-style: bolder;
+    }
+  }
+  .vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 40px;
+    ion-icon {
+        font-size: 50px; //Preferred size here
+    }
+  } 
+
+}

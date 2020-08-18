@@ -1,5 +1,8 @@
 ion-content
 {
+    .fontStyleLabel{
+        font-size: 60%;
+    }
     align-items: center;
     justify-content: center;
     .sqare_button {
@@ -15,6 +18,9 @@ ion-content
         white-space: normal;
         word-wrap: break-word;
         text-transform: none;
+        .fontStyleButton{
+            font-size: 30%;
+        }
         .button-inner {
             flex-flow: column;
           }
