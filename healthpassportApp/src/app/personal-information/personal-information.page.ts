@@ -95,60 +95,76 @@ export class PersonalInformationPage implements OnInit {
       }
     );  
   }
-  //to GetData with  Device ID
-  async getData()
-  	{
-        let loading = await this.loadingCtrl.create({
-            message    : 'Checking Card ID <br> Please Put Your Card ID',
-            spinner:    'crescent',
-            cssClass: 'custom-loading',
-            duration:   5000
-        });
-        await loading.present();
+    //to GetData with  Device ID
+    async getData()
+      {
+          let loading = await this.loadingCtrl.create({
+              message    : 'Checking Card ID <br> Please Put Your Card ID',
+              spinner:    'crescent',
+              cssClass: 'custom-loading',
+              duration:   5000
+          });
+          await loading.present();
 
-        //to inform if No Card ID Detected
-        let toast;
-        toast = await this.toastCtrl.create({
-          message: 'No Card ID Detected or Invalid ID Card, Please Try Again',
-          duration: 2000,
-          position: 'top'
-        });
-        
-  		  this.apiSvc.get('/check/device='+this.deviceid).then(
-  			success => {
-          let respon = JSON.parse(this.apiSvc.getDataResult.data);
-          console.log(respon);
-          //set timeout and interval for check card id by device id
-          let checkData = setInterval(() => this.checkData(), 1000);
-          setTimeout(() => { clearInterval(checkData); 
-            if(this.booleanData == false){
-              let navigationExtras: NavigationExtras = {
-                state	: {
-                  deviceid	: this.deviceid
-                }
-              };
-              console.log(navigationExtras);
-              
-              if(this.deviceid)
-              {
-                toast.present();
-                this.navCtrl.navigateRoot('/login', navigationExtras);
+          //to inform if No Card ID Detected
+          let noCardId;
+          noCardId = await this.toastCtrl.create({
+            message: 'No Card ID Detected or Invalid ID Card, Please Try Again',
+            duration: 2000,
+            position: 'top'
+          });
+          
+          this.apiSvc.get('/check/device='+this.deviceid).then(
+          success => {
+            let respon = JSON.parse(this.apiSvc.getDataResult.data);
+            console.log(respon);
+            //set timeout and interval for check card id by device id
+            let checkData = setInterval(() => this.checkData(), 1000);
+            setTimeout(() => { clearInterval(checkData); 
+              if(this.booleanData == false){
+                let navigationExtras: NavigationExtras = {
+                  state	: {
+                    deviceid	: this.deviceid
+                  }
+                };
+                console.log(navigationExtras);
                 
+                if(this.deviceid)
+                {
+                  noCardId.present();
+                  this.navCtrl.navigateRoot('/login', navigationExtras);
+                  
+                }
+                else{
+                  noCardId.present();
+                  this.navCtrl.navigateRoot('/login');
+                }
               }
-              else{
-                this.navCtrl.navigateRoot('/login');
-              }
-            }
-          }, 5000);
-        }
-  		);
-    }
+            }, 5000);
+          }
+        );
+      }
 
   //to check Card ID by Device ID 
   async checkData(){
+    let errorConnection;
+    errorConnection = await this.toastCtrl.create({
+      message: 'Error Connection, Cannot Find the Card Id',
+      duration: 2000,
+      position: 'top'
+    });
+
     this.apiSvc.get('/check/device='+this.deviceid).then(
       success => {
         let respon = JSON.parse(this.apiSvc.getDataResult.data);
+        console.log(respon.Data);
+        if(respon.Data == undefined){
+          this.loadingCtrl.dismiss();
+          errorConnection.present();
+          this.navCtrl.navigateRoot('/login');
+        }
+        else
+        {
           if(!respon.Data[0])
           {
             this.booleanData = false;
@@ -161,6 +177,8 @@ export class PersonalInformationPage implements OnInit {
             //put method to update to database locked
             this.deviceLocked();
           }   
+        }
+        
       }
     );    
   }

@@ -40,6 +40,12 @@ ngOnInit() {
     let loading = await this.loadingCtrl.create({
         message    : 'Load Dispenser Data',
     });
+    let errorConnection;
+    errorConnection = await this.toastCtrl.create({
+      message: 'Error Connection, Cannot find details of dispenser.',
+      duration: 2000,
+      position: 'top'
+    });
     await loading.present();        
     this.apiSvc.getDispenser('?Device_ID='+this.deviceId).then(
       success => {
@@ -57,7 +63,9 @@ ngOnInit() {
           console.log(this.data);
         }
         else{
-          console.log("error can't find details of dispenser.");
+          this.loadingCtrl.dismiss();
+          errorConnection.present();
+          this.navCtrl.navigateRoot('/student-needs');
         }
       }
     );    
