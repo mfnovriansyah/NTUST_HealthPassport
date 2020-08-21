@@ -35,8 +35,6 @@ export class DispenserInformationPage implements OnInit {
         this.studentNeeds.type 	= this.router.getCurrentNavigation().extras.state.type;
         this.studentNeeds.temperature 	= this.router.getCurrentNavigation().extras.state.temperature;
       }
-      console.log(this.studentNeeds);
-      console.log(this.studentNeeds.type);
       if(this.studentNeeds.type != '' && this.studentNeeds.temperature != '')
       {
         this.getDispenserInformation();
@@ -140,7 +138,9 @@ export class DispenserInformationPage implements OnInit {
     console.log(device);
     let navigationExtras: NavigationExtras = {
 			state	: {
-        deviceId	: device
+        deviceId	: device,
+        type	: this.studentNeeds.type,
+        temperature	: this.studentNeeds.temperature
       }
     };
     console.log(navigationExtras);

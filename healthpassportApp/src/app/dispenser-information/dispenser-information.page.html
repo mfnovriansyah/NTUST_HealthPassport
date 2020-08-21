@@ -1,8 +1,13 @@
+<ion-header>
+  <ion-toolbar class="ion-no-border">
+  <ion-buttons slot="start">
+      <ion-back-button defaultHref="/student-needs"></ion-back-button>
+    </ion-buttons>  		
+    <ion-title >{{info}}</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content >
   <ion-grid>
-    <div class="ion-text-center">
-      <h2>{{info}}</h2>
-    </div>
     <div *ngIf="deviceId[2]" class="totaldevice3">
       <ion-row>
         <ion-col col-6>

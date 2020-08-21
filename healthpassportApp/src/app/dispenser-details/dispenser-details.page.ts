@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LoadingController,NavController, ToastController} from '@ionic/angular';
 import { ApiService } from '../service/api.service';
 import { ActivatedRoute,  Router} from '@angular/router';
+import { NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-dispenser-details',
   templateUrl: './dispenser-details.page.html',
@@ -12,6 +13,10 @@ export class DispenserDetailsPage implements OnInit {
 private today;
 private deviceId= '';
 private building= [];
+studentNeeds = {
+  temperature			: '',
+  type			      : ''
+}
 
 data : any = []; // for Dispenser Details Data
 constructor(
@@ -30,6 +35,8 @@ ngOnInit() {
     if (this.router.getCurrentNavigation().extras.state) 
     {
       this.deviceId 	= this.router.getCurrentNavigation().extras.state.deviceId;
+      this.studentNeeds.type 	= this.router.getCurrentNavigation().extras.state.type;
+      this.studentNeeds.temperature 	= this.router.getCurrentNavigation().extras.state.temperature;
     }
   });
   this.getDispenserDetails();
@@ -73,5 +80,15 @@ ngOnInit() {
   async backHome()
   {
     this.navCtrl.navigateRoot('/home');
+  }
+  async backDispenserDetails()
+  {
+    let navigationExtras: NavigationExtras = {
+			state	: {
+        type	: this.studentNeeds.type,
+        temperature	: this.studentNeeds.temperature
+      }
+    };
+    this.navCtrl.navigateRoot('/dispenser-information',navigationExtras);
   }
 }
