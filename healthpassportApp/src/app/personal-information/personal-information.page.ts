@@ -102,7 +102,7 @@ export class PersonalInformationPage implements OnInit {
               message    : 'Checking Card ID <br> Please Put Your Card ID',
               spinner:    'crescent',
               cssClass: 'custom-loading',
-              duration:   5000
+              duration:   5200
           });
           await loading.present();
 
@@ -140,6 +140,10 @@ export class PersonalInformationPage implements OnInit {
                   this.navCtrl.navigateRoot('/login');
                 }
               }
+              if(this.booleanData == true)
+              {
+                return true;
+              }
             }, 5000);
           }
         );
@@ -176,6 +180,7 @@ export class PersonalInformationPage implements OnInit {
             this.data = respon.Data[0];
             //put method to update to database locked
             this.deviceLocked();
+            return true;
           }   
         }
         

@@ -64,4 +64,12 @@ export class HomePage {
       }      
     });
   }
+  async settingMenu(){
+    let navigationExtras: NavigationExtras = {
+			state	: {
+				deviceid	: this.deviceid
+			}
+    };
+    this.navCtrl.navigateRoot('/setting-menu',navigationExtras);
+  }
 }

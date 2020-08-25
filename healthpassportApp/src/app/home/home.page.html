@@ -1,4 +1,5 @@
 <ion-grid>
+    <ion-row>
   <ion-col>
       <ion-button fill="solid" size="large" class="sqare_button" (click)="drinkwater()" >
           <div class="vertical">
@@ -15,5 +16,8 @@
           </div>
       </ion-button>
   </ion-col>
-  
+</ion-row>
   </ion-grid>
+  <ion-button color="light" item-end (click)="settingMenu()">
+    <ion-icon slot="start" name="settings-outline"></ion-icon>Setting-Menu
+</ion-button> 	  
