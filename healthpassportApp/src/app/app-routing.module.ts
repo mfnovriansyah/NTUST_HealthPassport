@@ -3,17 +3,17 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'setting-menu',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'home/:deviceId',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'setting-menu',
-    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -34,7 +34,8 @@ const routes: Routes = [
   {
     path: 'setting-menu',
     loadChildren: () => import('./setting-menu/setting-menu.module').then( m => m.SettingMenuPageModule)
-  },  {
+  },
+  {
     path: 'dispenser-details',
     loadChildren: () => import('./dispenser-details/dispenser-details.module').then( m => m.DispenserDetailsPageModule)
   },

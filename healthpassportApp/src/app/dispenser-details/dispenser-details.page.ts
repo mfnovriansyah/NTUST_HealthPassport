@@ -12,7 +12,7 @@ export class DispenserDetailsPage implements OnInit {
 
 private today;
 private deviceId= '';
-private building= [];
+public building= [];
 studentNeeds = {
   temperature			: '',
   type			      : ''

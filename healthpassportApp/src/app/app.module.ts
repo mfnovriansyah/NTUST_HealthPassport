@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BluetoothSerial } from '@ionic-native/bluetooth-serial/ngx';
 import { IonicStorageModule } from '@ionic/storage';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +24,7 @@ import { IonicStorageModule } from '@ionic/storage';
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['localstorage','indexeddb', 'sqlite', 'websql']
-    }), AppRoutingModule],
+    }), AppRoutingModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })],
   providers: [
     StatusBar,
     ScreenOrientation,
